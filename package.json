@@ -10,6 +10,11 @@
     "node": ">=8.0.0"
   },
   "author": "Evan Hahn <me@evanhahn.com> (https://evanhahn.com)",
+  "keywords": [
+    "useragent",
+    "user-agent",
+    "rfc7231"
+  ],
   "main": "./UserAgentBag.js",
   "files": [
     "README.md",
