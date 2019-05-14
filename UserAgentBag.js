@@ -72,10 +72,6 @@ class UserAgentBag {
       }
     }).join(' ')
   }
-
-  [Symbol.iterator] () {
-    return this._nodes[Symbol.iterator]()
-  }
 }
 
 module.exports = UserAgentBag

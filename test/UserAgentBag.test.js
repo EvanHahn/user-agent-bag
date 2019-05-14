@@ -1,6 +1,7 @@
+// @flow
 import test from 'ava'
 
-import UserAgentBag from '../UserAgentBag'
+const UserAgentBag = require('../UserAgentBag')
 
 test('parsing a string with products and comments', t => {
   const bag = new UserAgentBag('Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar')
@@ -25,37 +26,6 @@ test('parsing a string with products and comments', t => {
   t.is(bag.get('foo'), undefined)
   t.deepEqual(bag.getAll('Garbage'), [])
   t.deepEqual(bag.getAll('foo'), [])
-
-  t.deepEqual([...bag], [
-    {
-      type: 'product',
-      product: 'Foo',
-      version: 'fooVersion'
-    },
-    {
-      type: 'comment',
-      text: 'comment (nested)!'
-    },
-    {
-      type: 'product',
-      product: 'Bar',
-      version: null
-    },
-    {
-      type: 'product',
-      product: 'Baz',
-      version: 'bazVersion'
-    },
-    {
-      type: 'comment',
-      text: 'comment2'
-    },
-    {
-      type: 'product',
-      product: 'Bar',
-      version: 'secondBar'
-    }
-  ])
 
   t.is(bag.toString(), 'Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar')
 })
@@ -89,7 +59,6 @@ test('fails if the string is malformed', t => {
 
   for (const testCase of testCases) {
     const bag = new UserAgentBag(testCase)
-    t.deepEqual([...bag], [])
-    t.assert(typeof bag.error.message === 'string')
+    t.assert(bag.error && typeof bag.error.message === 'string')
   }
 })

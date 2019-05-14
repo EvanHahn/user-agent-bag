@@ -7,16 +7,18 @@
     "node": ">=8.0.0"
   },
   "scripts": {
-    "pretest": "npm run lint && npm run build",
+    "pretest": "npm run lint && npm run build && npm run test:flow",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "standard --fix",
-    "test": "ava"
+    "test": "ava",
+    "test:flow": "flow status"
   },
   "dependencies": {
     "pegjs": "^0.10.0"
   },
   "devDependencies": {
     "ava": "^1.4.1",
+    "flow-bin": "^0.98.1",
     "standard": "^12.0.1"
   }
 }

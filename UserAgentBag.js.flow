@@ -1,0 +1,28 @@
+// @flow
+type Entries = Iterable<Array<string | null>>;
+
+type UserAgentBagNode = (
+  {|
+    type: 'product',
+    product: string,
+    version: string | null
+  |} |
+  {|
+    type: 'comment',
+    text: string
+  |}
+);
+
+declare class UserAgentBag {
+  error?: Error;
+
+  constructor(arg: string | Entries): UserAgentBag;
+
+  get(product: string): string | null | void;
+  getAll(product: string): Array<string | null | void>;
+  has(product: string): boolean;
+
+  toString(): string;
+}
+
+declare module.exports: typeof UserAgentBag;
