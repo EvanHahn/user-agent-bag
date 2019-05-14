@@ -3,7 +3,6 @@
   "description": "RFC-respecting User-Agent serialization and deserialization",
   "version": "0.0.0",
   "license": "MIT",
-  "private": true,
   "homepage": "https://github.com/EvanHahn/user-agent-bag",
   "bugs": "https://github.com/EvanHahn/user-agent-bag/issues",
   "engines": {
