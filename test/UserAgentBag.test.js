@@ -54,7 +54,8 @@ test('fails if the string is malformed', t => {
     'Trailing/whitespace ',
     'Am(biguous)/1',
     'Inv[alid]/1',
-    'Invalid/[two]'
+    'Invalid/[two]',
+    'b'.repeat(257)
   ]
 
   for (const testCase of testCases) {

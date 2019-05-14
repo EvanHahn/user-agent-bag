@@ -1,5 +1,7 @@
 const parser = require('./parser')
 
+const MAX_STRING_LENGTH = 256
+
 class UserAgentBag {
   constructor (arg) {
     this._asMap = new Map()
@@ -7,6 +9,9 @@ class UserAgentBag {
     if (typeof arg === 'string') {
       try {
         this._nodes = parser.parse(arg)
+        if (arg.length > MAX_STRING_LENGTH) {
+          throw new Error(`User-Agent strings must be shorter than ${MAX_STRING_LENGTH} characters`)
+        }
       } catch (err) {
         this.error = err
         this._nodes = []
