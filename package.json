@@ -1,15 +1,16 @@
 {
   "name": "user-agent-bag",
+  "description": "RFC-respecting User-Agent serialization and deserialization",
   "version": "0.0.0",
   "private": true,
+  "engines": {
+    "node": ">=8.0.0"
+  },
   "scripts": {
     "pretest": "npm run lint && npm run build",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "standard --fix",
     "test": "ava"
-  },
-  "engines": {
-    "node": ">=8.0.0"
   },
   "dependencies": {
     "pegjs": "^0.10.0"
