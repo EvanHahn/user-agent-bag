@@ -56,6 +56,23 @@ test('parsing a string with products and comments', t => {
       version: 'secondBar'
     }
   ])
+
+  t.is(bag.toString(), 'Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar')
+})
+
+test('can convert entries to a bag', t => {
+  const entries = [
+    ['Foo', 'bar'],
+    ['Baz', null],
+    ['Foo', 'two']
+  ]
+
+  const bag = new UserAgentBag(entries)
+
+  t.deepEqual(bag.getAll('Foo'), ['bar', 'two'])
+  t.deepEqual(bag.getAll('Baz'), [null])
+
+  t.is(bag.toString(), 'Foo/bar Baz Foo/two')
 })
 
 test('fails if the string is malformed', t => {
