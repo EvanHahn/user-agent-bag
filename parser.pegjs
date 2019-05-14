@@ -23,13 +23,13 @@ userAgent
 // product-version = token
 // https://tools.ietf.org/html/rfc7231#section-5.5.3
 product
-  = token : token
+  = product : token
     versionWithSlash : ( '/' token ) ?
   {
     const version = versionWithSlash ? versionWithSlash[1] : null
     return {
       type: 'product',
-      product: token,
+      product,
       version
     }
   }
