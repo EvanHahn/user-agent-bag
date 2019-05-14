@@ -1,5 +1,5 @@
 // @flow
-type Entries = Iterable<Array<string | null>>;
+type Entries = Iterable<[string, string | null]>;
 
 type UserAgentBagNode = (
   {|
@@ -14,13 +14,12 @@ type UserAgentBagNode = (
 );
 
 declare class UserAgentBag {
-  error?: Error;
-
   constructor(arg: string | Entries): UserAgentBag;
 
   get(product: string): string | null | void;
   getAll(product: string): Array<string | null | void>;
   has(product: string): boolean;
+  entries(): Entries;
 
   toString(): string;
 }

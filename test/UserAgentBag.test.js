@@ -60,6 +60,6 @@ test('fails if the string is malformed', t => {
 
   for (const testCase of testCases) {
     const bag = new UserAgentBag(testCase)
-    t.assert(bag.error && typeof bag.error.message === 'string')
+    t.deepEqual([...bag.entries()], [])
   }
 })

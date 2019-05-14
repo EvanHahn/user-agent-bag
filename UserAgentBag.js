@@ -13,7 +13,6 @@ class UserAgentBag {
           throw new Error(`User-Agent strings must be shorter than ${MAX_STRING_LENGTH} characters`)
         }
       } catch (err) {
-        this.error = err
         this._nodes = []
       }
 
@@ -62,6 +61,19 @@ class UserAgentBag {
 
   has (product) {
     return this._asMap.has(product)
+  }
+
+  entries () {
+    const nodes = this._nodes
+    return {
+      * [Symbol.iterator] () {
+        for (const node of nodes) {
+          if (node.type === 'product') {
+            yield [node.product, node.version]
+          }
+        }
+      }
+    }
   }
 
   toString () {

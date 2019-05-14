@@ -2,4 +2,4 @@
 
 ## Unreleased
 ### Added
-- `UserAgentBag` class with `get`, `getAll`, `has`, and `toString`
+- `UserAgentBag` class with `entries`, `get`, `getAll`, `has`, and `toString`

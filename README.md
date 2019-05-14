@@ -62,6 +62,24 @@ bagFromMap.toString()
 </details>
 
 <details>
+<summary><code>UserAgentBag.prototype.entries()</code></summary>
+
+Returns an iterable yielding each of the product-version pairs in the bag. Like `Map.prototype.entries`.
+
+```js
+const bag = new UserAgentBag('Foo/1.2 Bar Baz/3.4')
+
+for (const [product, version] of bag.entries()) {
+  console.log(product + ' version ' + version)
+}
+// Logs:
+// Foo version 1.2
+// Bar version null
+// Baz version 3.4
+```
+</details>
+
+<details>
 <summary><code>UserAgentBag.prototype.get(product)</code></summary>
 
 Returns the version of the product. If `product` is in the bag multiple times, only the first value is returned. If no version is specified, `null` is returned. If the product is missing from the bag, `undefined` is returned.
