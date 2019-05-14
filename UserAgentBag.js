@@ -2,7 +2,12 @@ const parser = require('./parser')
 
 class UserAgentBag {
   constructor (str) {
-    this._nodes = parser.parse(str)
+    try {
+      this._nodes = parser.parse(str)
+    } catch (err) {
+      this.error = err
+      this._nodes = []
+    }
 
     this._asMap = new Map()
     for (const node of this._nodes) {

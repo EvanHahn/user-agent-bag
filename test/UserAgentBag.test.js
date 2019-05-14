@@ -57,3 +57,22 @@ test('parsing a string with products and comments', t => {
     }
   ])
 })
+
+test('fails if the string is malformed', t => {
+  const testCases = [
+    '',
+    'NoVersion/',
+    '(starts with comment) Mozilla/5.0',
+    ' LeadingWhitespace/1',
+    'Trailing/whitespace ',
+    'Am(biguous)/1',
+    'Inv[alid]/1',
+    'Invalid/[two]'
+  ]
+
+  for (const testCase of testCases) {
+    const bag = new UserAgentBag(testCase)
+    t.deepEqual([...bag], [])
+    t.assert(typeof bag.error.message === 'string')
+  }
+})
