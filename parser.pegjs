@@ -20,10 +20,11 @@ userAgent
   }
 
 // product = token ["/" product-version]
+// product-version = token
 // https://tools.ietf.org/html/rfc7231#section-5.5.3
 product
   = token : token
-    versionWithSlash : ( '/' productVersion ) ?
+    versionWithSlash : ( '/' token ) ?
   {
     const version = versionWithSlash ? versionWithSlash[1] : null
     return {
@@ -32,12 +33,6 @@ product
       version
     }
   }
-
-// product-version = token
-// https://tools.ietf.org/html/rfc7231#section-5.5.3
-productVersion
-  = version : token
-  { return version }
 
 // token = 1*tchar
 // https://tools.ietf.org/html/rfc7230#section-3.2.6
