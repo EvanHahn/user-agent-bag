@@ -21,13 +21,11 @@ product
   = token : token
     versionWithSlash : ( '/' productVersion ) ?
   {
-    if (versionWithSlash) {
-      return {
-        token,
-        version: versionWithSlash[1]
-      }
-    } else {
-      return { token }
+    const version = versionWithSlash ? versionWithSlash[1] : null
+    return {
+      type: 'product',
+      product: token,
+      version
     }
   }
 
@@ -88,7 +86,7 @@ DIGIT
 
 ALPHA
   = [a-z]i
-  
+
 VCHAR
   = [\x21-\x7E]
 

@@ -3,7 +3,7 @@ import test from 'ava'
 import UserAgentBag from '../UserAgentBag'
 
 test('parsing a string with products and comments', t => {
-  const bag = new UserAgentBag('Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion Bar/secondBar')
+  const bag = new UserAgentBag('Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar')
 
   t.assert(bag.has('Foo'))
   t.is(bag.get('Foo'), 'fooVersion')
@@ -11,15 +11,20 @@ test('parsing a string with products and comments', t => {
 
   t.assert(bag.has('Bar'))
   t.is(bag.get('Bar'), null)
-  t.deepEqual(bag.get('Bar'), [null, 'secondBar'])
+  t.deepEqual(bag.getAll('Bar'), [null, 'secondBar'])
 
   t.assert(bag.has('Baz'))
-  t.is(bag.get('Baz', 'bazVersion'))
+  t.is(bag.get('Baz'), 'bazVersion')
   t.deepEqual(bag.getAll('Baz'), ['bazVersion'])
 
   t.assert(!bag.has('Garbage'))
   t.assert(!bag.has('foo'))
   t.assert(!bag.has(''))
+
+  t.is(bag.get('Garbage'), undefined)
+  t.is(bag.get('foo'), undefined)
+  t.deepEqual(bag.getAll('Garbage'), [])
+  t.deepEqual(bag.getAll('foo'), [])
 
   t.deepEqual([...bag], [
     {
@@ -40,6 +45,10 @@ test('parsing a string with products and comments', t => {
       type: 'product',
       product: 'Baz',
       version: 'bazVersion'
+    },
+    {
+      type: 'comment',
+      text: 'comment2'
     },
     {
       type: 'product',
