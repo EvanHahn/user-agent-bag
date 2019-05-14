@@ -9,6 +9,7 @@
   "engines": {
     "node": ">=8.0.0"
   },
+  "author": "Evan Hahn <me@evanhahn.com> (https://evanhahn.com)",
   "main": "./UserAgentBag.js",
   "files": [
     "README.md",
