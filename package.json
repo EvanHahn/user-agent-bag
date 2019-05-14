@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "license": "MIT",
   "private": true,
+  "homepage": "https://github.com/EvanHahn/user-agent-bag",
   "bugs": "https://github.com/EvanHahn/user-agent-bag/issues",
   "engines": {
     "node": ">=8.0.0"
