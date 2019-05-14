@@ -15,6 +15,10 @@
     "user-agent",
     "rfc7231"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/EvanHahn/user-agent-bag.git"
+  },
   "main": "./UserAgentBag.js",
   "files": [
     "README.md",
