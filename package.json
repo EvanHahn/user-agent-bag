@@ -7,6 +7,14 @@
     "node": ">=8.0.0"
   },
   "main": "./UserAgentBag.js",
+  "files": [
+    "README.md",
+    "LICENSE.txt",
+    "CHANGELOG.md",
+    "parser.js",
+    "UserAgentBag.js",
+    "UserAgentBag.js.flow"
+  ],
   "scripts": {
     "pretest": "npm run lint && npm run build && npm run test:flow",
     "build": "pegjs --output parser.js parser.pegjs",
