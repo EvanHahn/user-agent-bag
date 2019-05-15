@@ -45,7 +45,7 @@ test('can convert entries to a bag', t => {
   t.is(bag.toString(), 'Foo/bar Baz Foo/two')
 })
 
-test('fails if the string is malformed', t => {
+test('returns an empty bag if the string is malformed', t => {
   const testCases = [
     '',
     'NoVersion/',
@@ -61,5 +61,27 @@ test('fails if the string is malformed', t => {
   for (const testCase of testCases) {
     const bag = new UserAgentBag(testCase)
     t.deepEqual([...bag.entries()], [])
+  }
+})
+
+test('returns an empty bag if null or undefined are passed', t => {
+  const nullBag = new UserAgentBag(null)
+  t.deepEqual([...nullBag.entries()], [])
+
+  const undefinedBag = new UserAgentBag(undefined)
+  t.deepEqual([...undefinedBag.entries()], [])
+})
+
+test('throws if bogus types are passed', t => {
+  const testCases = [
+    0,
+    123,
+    true,
+    false,
+    { toString: () => 'User/agent' }
+  ]
+
+  for (const testCase of testCases) {
+    t.throws(() => new UserAgentBag(/*:: ( */ testCase /*:: : any) */))
   }
 })

@@ -14,7 +14,7 @@ type UserAgentBagNode = (
 );
 
 declare class UserAgentBag {
-  constructor(arg: string | Entries): UserAgentBag;
+  constructor(arg: string | Entries | null | void): UserAgentBag;
 
   get(product: string): string | null | void;
   getAll(product: string): Array<string | null | void>;
