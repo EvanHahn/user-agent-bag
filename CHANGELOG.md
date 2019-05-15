@@ -4,6 +4,7 @@
 ### Added
 - `UserAgentBag` constructor creates an empty bag when passed `undefined` or `null`
 - `UserAgentBag` constructor throws when other invalid types are passed
+- `UserAgentBag.prototype.size` returns the number of products
 
 ### Fixed
 - Parsing is skipped if the length is too large

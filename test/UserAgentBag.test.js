@@ -27,6 +27,8 @@ test('parsing a string with products and comments', t => {
   t.deepEqual(bag.getAll('Garbage'), [])
   t.deepEqual(bag.getAll('foo'), [])
 
+  t.is(bag.size(), 4)
+
   t.is(bag.toString(), 'Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar')
 })
 
@@ -41,6 +43,8 @@ test('can convert entries to a bag', t => {
 
   t.deepEqual(bag.getAll('Foo'), ['bar', 'two'])
   t.deepEqual(bag.getAll('Baz'), [null])
+
+  t.is(bag.size(), 3)
 
   t.is(bag.toString(), 'Foo/bar Baz Foo/two')
 })
@@ -61,15 +65,18 @@ test('returns an empty bag if the string is malformed', t => {
   for (const testCase of testCases) {
     const bag = new UserAgentBag(testCase)
     t.deepEqual([...bag.entries()], [])
+    t.is(bag.size(), 0)
   }
 })
 
 test('returns an empty bag if null or undefined are passed', t => {
   const nullBag = new UserAgentBag(null)
   t.deepEqual([...nullBag.entries()], [])
+  t.is(nullBag.size(), 0)
 
   const undefinedBag = new UserAgentBag(undefined)
   t.deepEqual([...undefinedBag.entries()], [])
+  t.is(undefinedBag.size(), 0)
 })
 
 test('throws if bogus types are passed', t => {
