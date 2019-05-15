@@ -35,6 +35,16 @@ class UserAgentBag {
     }
   }
 
+  size () {
+    return this._nodes.reduce((total, node) => {
+      if (node.type === 'product') {
+        return total + 1
+      } else {
+        return total
+      }
+    }, 0)
+  }
+
   toString () {
     return this._nodes.map(node => {
       if (node.type === 'product') {

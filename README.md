@@ -143,6 +143,18 @@ bag.has('missing')
 </details>
 
 <details>
+<summary><code>UserAgentBag.prototype.size()</code></summary>
+
+Returns the number of products in the bag.
+
+```js
+const bag = new UserAgentBag('Foo/1.2 (ignored comment) Bar/3 Bar/4')
+bag.size()
+// => 3
+```
+</details>
+
+<details>
 <summary><code>UserAgentBag.prototype.toString()</code></summary>
 
 Converts the bag to a string. Useful when constructing your own User-Agents.

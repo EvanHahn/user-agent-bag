@@ -20,6 +20,7 @@ declare class UserAgentBag {
   getAll(product: string): Array<string | null | void>;
   has(product: string): boolean;
   entries(): Entries;
+  size(): number;
 
   toString(): string;
 }
