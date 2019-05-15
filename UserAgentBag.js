@@ -4,50 +4,9 @@ const MAX_STRING_LENGTH = 256
 
 class UserAgentBag {
   constructor (arg) {
-    this._asMap = new Map()
-
-    if (typeof arg === 'string') {
-      try {
-        this._nodes = parser.parse(arg)
-        if (arg.length > MAX_STRING_LENGTH) {
-          throw new Error(`User-Agent strings must be shorter than ${MAX_STRING_LENGTH} characters`)
-        }
-      } catch (err) {
-        this._nodes = []
-      }
-
-      for (const node of this._nodes) {
-        if (node.type !== 'product') {
-          continue
-        } else if (this._asMap.has(node.product)) {
-          this._asMap.get(node.product).push(node.version)
-        } else {
-          this._asMap.set(node.product, [node.version])
-        }
-      }
-    } else if (arg && arg[Symbol.iterator]) {
-      this._nodes = []
-      for (const entry of arg) {
-        if (!isValidEntry(entry)) {
-          throw new Error('Iterator value is not an entry object')
-        }
-        // Entries can be arraylike objects which is why we can't use destructuring here.
-        const product = entry[0]
-        const version = entry[1]
-
-        this._nodes.push({
-          type: 'product',
-          product,
-          version
-        })
-
-        if (this._asMap.has(product)) {
-          this._asMap.get(product).push(version)
-        } else {
-          this._asMap.set(product, [version])
-        }
-      }
-    }
+    const { nodes, asMap } = parse(arg)
+    this._nodes = nodes
+    this._asMap = asMap
   }
 
   get (product) {
@@ -92,6 +51,72 @@ class UserAgentBag {
 }
 
 module.exports = UserAgentBag
+
+function parse (arg) {
+  if ((arg === undefined) || (arg === null)) {
+    return {
+      nodes: [],
+      asMap: new Map()
+    }
+  } else if (typeof arg === 'string') {
+    return parseString(arg)
+  } else if (arg && arg[Symbol.iterator]) {
+    return parseIterable(arg)
+  } else {
+    throw new TypeError('UserAgentBag must be constructed with a string or an iterable')
+  }
+}
+
+function parseString (str) {
+  let nodes = []
+  const asMap = new Map()
+
+  if (str.length && (str.length <= MAX_STRING_LENGTH)) {
+    try {
+      nodes = parser.parse(str)
+    } catch (err) {}
+  }
+
+  for (const node of nodes) {
+    if (node.type !== 'product') {
+      continue
+    } else if (asMap.has(node.product)) {
+      asMap.get(node.product).push(node.version)
+    } else {
+      asMap.set(node.product, [node.version])
+    }
+  }
+
+  return { nodes, asMap }
+}
+
+function parseIterable (iterable) {
+  const nodes = []
+  const asMap = new Map()
+
+  for (const entry of iterable) {
+    if (!isValidEntry(entry)) {
+      throw new Error('Iterator value is not an entry object')
+    }
+    // Entries can be arraylike objects which is why we can't use destructuring here.
+    const product = entry[0]
+    const version = entry[1]
+
+    nodes.push({
+      type: 'product',
+      product,
+      version
+    })
+
+    if (asMap.has(product)) {
+      asMap.get(product).push(version)
+    } else {
+      asMap.set(product, [version])
+    }
+  }
+
+  return { nodes, asMap }
+}
 
 function isValidEntry (value) {
   return (
