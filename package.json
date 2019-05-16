@@ -1,7 +1,7 @@
 {
   "name": "user-agent-bag",
   "description": "RFC-respecting User-Agent serialization and deserialization",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "license": "MIT",
   "homepage": "https://github.com/EvanHahn/user-agent-bag",
   "bugs": "https://github.com/EvanHahn/user-agent-bag/issues",
