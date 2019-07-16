@@ -28,13 +28,14 @@
     "UserAgentBag.js",
     "UserAgentBag.js.flow"
   ],
+  "types": "./index.d.ts",
   "scripts": {
-    "pretest": "npm run lint && npm run build && npm run test:flow && npm run test:typescript",
+    "pretest": "npm run lint && npm run build && npm run test:flow && npm run transpile:typescript",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "standard --fix",
     "test": "ava",
     "test:flow": "flow status",
-    "test:typescript": "tsc --strict test/UserAgentBag-types.test.ts"
+    "transpile:typescript": "tsc --strict test/UserAgentBag-types.test.ts"
   },
   "dependencies": {},
   "devDependencies": {
