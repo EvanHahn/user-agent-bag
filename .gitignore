@@ -1,4 +1,4 @@
 /node_modules/
 
 /parser.js
-/test/UserAgentBag-types.test.js
+/test/UserAgentBag-typescript.test.js

@@ -35,7 +35,7 @@
     "lint": "standard --fix",
     "test": "ava",
     "test:flow": "flow status",
-    "transpile:typescript": "tsc --strict test/UserAgentBag-types.test.ts"
+    "transpile:typescript": "tsc --strict --downlevelIteration test/UserAgentBag-typescript.test.ts"
   },
   "dependencies": {},
   "devDependencies": {
