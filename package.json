@@ -23,22 +23,25 @@
     "README.md",
     "LICENSE.txt",
     "CHANGELOG.md",
+    "index.d.ts",
     "parser.js",
     "UserAgentBag.js",
     "UserAgentBag.js.flow"
   ],
   "scripts": {
-    "pretest": "npm run lint && npm run build && npm run test:flow",
+    "pretest": "npm run lint && npm run build && npm run test:flow && npm run test:typescript",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "standard --fix",
     "test": "ava",
-    "test:flow": "flow status"
+    "test:flow": "flow status",
+    "test:typescript": "tsc --strict test/UserAgentBag-types.test.ts"
   },
   "dependencies": {},
   "devDependencies": {
     "ava": "^1.4.1",
     "flow-bin": "^0.98.1",
     "pegjs": "^0.10.0",
-    "standard": "^12.0.1"
+    "standard": "^12.0.1",
+    "typescript": "^3.5.3"
   }
 }
