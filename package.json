@@ -39,10 +39,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "ava": "^2.2.0",
-    "flow-bin": "^0.102.0",
+    "ava": "^2.3.0",
+    "flow-bin": "^0.106.2",
     "pegjs": "^0.10.0",
-    "standard": "^13.0.1",
+    "standard": "^14.0.2",
     "typescript": "^3.5.3"
   }
 }
