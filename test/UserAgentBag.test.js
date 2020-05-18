@@ -1,6 +1,5 @@
 // @flow
-import test from 'ava'
-
+const test = require('ava')
 const UserAgentBag = require('../UserAgentBag')
 
 test('parsing a string with products and comments', t => {
