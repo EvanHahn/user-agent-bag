@@ -37,9 +37,8 @@
     "test:flow": "flow status",
     "transpile:typescript": "tsc --strict --downlevelIteration test/UserAgentBag-typescript.test.ts"
   },
-  "dependencies": {},
   "devDependencies": {
-    "ava": "^3.10.1",
+    "ava": "^3.14.0",
     "flow-bin": "^0.129.0",
     "pegjs": "^0.10.0",
     "standard": "^14.3.4",
