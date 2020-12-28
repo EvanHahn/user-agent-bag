@@ -1,4 +1,3 @@
-// @flow
 const test = require('ava')
 const UserAgentBag = require('../UserAgentBag')
 

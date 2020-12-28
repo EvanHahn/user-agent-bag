@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+### Removed
+- Removed Flow support
+
 ## 0.2.0 - 2019-05-16
 ### Added
 - `UserAgentBag` constructor creates an empty bag when passed `undefined` or `null`

@@ -25,23 +25,20 @@
     "CHANGELOG.md",
     "index.d.ts",
     "parser.js",
-    "UserAgentBag.js",
-    "UserAgentBag.js.flow"
+    "UserAgentBag.js"
   ],
   "types": "./index.d.ts",
   "scripts": {
-    "pretest": "npm run lint && npm run build && npm run test:flow && npm run transpile:typescript",
+    "pretest": "npm run lint && npm run build && npm run transpile:typescript",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "standard --fix",
     "test": "ava",
-    "test:flow": "flow status",
-    "transpile:typescript": "tsc --strict --downlevelIteration test/UserAgentBag-typescript.test.ts"
+    "transpile:typescript": "tsc --strict --target ES2015 --module commonjs --allowSyntheticDefaultImports test/UserAgentBag-typescript.test.ts"
   },
   "devDependencies": {
     "ava": "^3.14.0",
-    "flow-bin": "^0.129.0",
     "pegjs": "^0.10.0",
     "standard": "^14.3.4",
-    "typescript": "^3.9.7"
+    "typescript": "^4.1.3"
   }
 }
