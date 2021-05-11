@@ -36,9 +36,9 @@
     "transpile:typescript": "tsc --strict --target ES2015 --module commonjs --allowSyntheticDefaultImports test/UserAgentBag-typescript.test.ts"
   },
   "devDependencies": {
-    "ava": "^3.14.0",
+    "ava": "^3.15.0",
     "pegjs": "^0.10.0",
     "standard": "^16.0.3",
-    "typescript": "^4.1.3"
+    "typescript": "^4.2.4"
   }
 }
