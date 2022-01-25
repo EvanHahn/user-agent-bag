@@ -31,14 +31,18 @@
   "scripts": {
     "pretest": "npm run lint && npm run build && npm run transpile:typescript",
     "build": "pegjs --output parser.js parser.pegjs",
-    "lint": "standard --fix",
+    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint:eslint": "eslint .",
+    "lint:prettier": "prettier --check .",
+    "format": "prettier --write .",
     "test": "ava",
     "transpile:typescript": "tsc --strict --target ES2015 --module commonjs --allowSyntheticDefaultImports test/UserAgentBag-typescript.test.ts"
   },
   "devDependencies": {
     "ava": "^3.15.0",
+    "eslint": "^7.18.0",
     "pegjs": "^0.10.0",
-    "standard": "^16.0.4",
+    "prettier": "^2.5.1",
     "typescript": "^4.4.4"
   }
 }

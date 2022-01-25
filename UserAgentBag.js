@@ -1,138 +1,141 @@
-const parser = require('./parser')
+const parser = require("./parser");
 
-const MAX_STRING_LENGTH = 256
+const MAX_STRING_LENGTH = 256;
 
 class UserAgentBag {
-  constructor (arg) {
-    const { nodes, asMap } = parse(arg)
-    this._nodes = nodes
-    this._asMap = asMap
+  constructor(arg) {
+    const { nodes, asMap } = parse(arg);
+    this._nodes = nodes;
+    this._asMap = asMap;
   }
 
-  get (product) {
-    const allVersions = this._asMap.get(product)
-    return allVersions ? allVersions[0] : undefined
+  get(product) {
+    const allVersions = this._asMap.get(product);
+    return allVersions ? allVersions[0] : undefined;
   }
 
-  getAll (product) {
-    return this._asMap.get(product) || []
+  getAll(product) {
+    return this._asMap.get(product) || [];
   }
 
-  has (product) {
-    return this._asMap.has(product)
+  has(product) {
+    return this._asMap.has(product);
   }
 
-  entries () {
-    const nodes = this._nodes
+  entries() {
+    const nodes = this._nodes;
     return {
-      * [Symbol.iterator] () {
+      *[Symbol.iterator]() {
         for (const node of nodes) {
-          if (node.type === 'product') {
-            yield [node.product, node.version]
+          if (node.type === "product") {
+            yield [node.product, node.version];
           }
         }
-      }
-    }
+      },
+    };
   }
 
-  size () {
+  size() {
     return this._nodes.reduce((total, node) => {
-      if (node.type === 'product') {
-        return total + 1
+      if (node.type === "product") {
+        return total + 1;
       } else {
-        return total
+        return total;
       }
-    }, 0)
+    }, 0);
   }
 
-  toString () {
-    return this._nodes.map(node => {
-      if (node.type === 'product') {
-        if (node.version) {
-          return node.product + '/' + node.version
+  toString() {
+    return this._nodes
+      .map((node) => {
+        if (node.type === "product") {
+          if (node.version) {
+            return node.product + "/" + node.version;
+          } else {
+            return node.product;
+          }
         } else {
-          return node.product
+          return "(" + node.text + ")";
         }
-      } else {
-        return '(' + node.text + ')'
-      }
-    }).join(' ')
+      })
+      .join(" ");
   }
 }
 
-module.exports = UserAgentBag
+module.exports = UserAgentBag;
 
-function parse (arg) {
-  if ((arg === undefined) || (arg === null)) {
+function parse(arg) {
+  if (arg === undefined || arg === null) {
     return {
       nodes: [],
-      asMap: new Map()
-    }
-  } else if (typeof arg === 'string') {
-    return parseString(arg)
+      asMap: new Map(),
+    };
+  } else if (typeof arg === "string") {
+    return parseString(arg);
   } else if (arg && arg[Symbol.iterator]) {
-    return parseIterable(arg)
+    return parseIterable(arg);
   } else {
-    throw new TypeError('UserAgentBag must be constructed with a string or an iterable')
+    throw new TypeError(
+      "UserAgentBag must be constructed with a string or an iterable"
+    );
   }
 }
 
-function parseString (str) {
-  let nodes = []
-  const asMap = new Map()
+function parseString(str) {
+  let nodes = [];
+  const asMap = new Map();
 
-  if (str.length && (str.length <= MAX_STRING_LENGTH)) {
+  if (str.length && str.length <= MAX_STRING_LENGTH) {
     try {
-      nodes = parser.parse(str)
-    } catch (err) {}
+      nodes = parser.parse(str);
+    } catch (err) {
+      // Do nothing
+    }
   }
 
   for (const node of nodes) {
-    if (node.type !== 'product') {
-      continue
+    if (node.type !== "product") {
+      continue;
     } else if (asMap.has(node.product)) {
-      asMap.get(node.product).push(node.version)
+      asMap.get(node.product).push(node.version);
     } else {
-      asMap.set(node.product, [node.version])
+      asMap.set(node.product, [node.version]);
     }
   }
 
-  return { nodes, asMap }
+  return { nodes, asMap };
 }
 
-function parseIterable (iterable) {
-  const nodes = []
-  const asMap = new Map()
+function parseIterable(iterable) {
+  const nodes = [];
+  const asMap = new Map();
 
   for (const entry of iterable) {
     if (!isValidEntry(entry)) {
-      throw new Error('Iterator value is not an entry object')
+      throw new Error("Iterator value is not an entry object");
     }
     // Entries can be arraylike objects which is why we can't use destructuring here.
-    const product = entry[0]
-    const version = entry[1]
+    const product = entry[0];
+    const version = entry[1];
 
     nodes.push({
-      type: 'product',
+      type: "product",
       product,
-      version
-    })
+      version,
+    });
 
     if (asMap.has(product)) {
-      asMap.get(product).push(version)
+      asMap.get(product).push(version);
     } else {
-      asMap.set(product, [version])
+      asMap.set(product, [version]);
     }
   }
 
-  return { nodes, asMap }
+  return { nodes, asMap };
 }
 
-function isValidEntry (value) {
+function isValidEntry(value) {
   return (
-    Boolean(value) &&
-    (typeof value === 'object') &&
-    ('0' in value) &&
-    ('1' in value)
-  )
+    Boolean(value) && typeof value === "object" && "0" in value && "1" in value
+  );
 }
