@@ -8,8 +8,8 @@
 
 ### Removed
 
-- Dropped support for old Node versions. Node v14+ is required
-- Removed Flow support
+- **Breaking:** Dropped support for old Node versions. Node v14+ is required
+- **Breaking:** Removed Flow support
 
 ## 0.2.0 - 2019-05-16
 
