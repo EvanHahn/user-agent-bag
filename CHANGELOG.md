@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Added
+
+- `UserAgentBag` is now iterable
+
 ### Changed
 
 - Improved TypeScript types

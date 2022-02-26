@@ -36,6 +36,15 @@ test("parsing a string with products and comments", (t) => {
       ["Bar", "secondBar"],
     ]
   );
+  t.deepEqual(
+    [...bag],
+    [
+      ["Foo", "fooVersion"],
+      ["Bar", null],
+      ["Baz", "bazVersion"],
+      ["Bar", "secondBar"],
+    ]
+  );
 
   t.is(bag.size(), 4);
 

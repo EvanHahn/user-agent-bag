@@ -23,16 +23,7 @@ class UserAgentBag {
   }
 
   entries() {
-    const nodes = this._nodes;
-    return {
-      *[Symbol.iterator]() {
-        for (const node of nodes) {
-          if (node.type === "product") {
-            yield [node.product, node.version];
-          }
-        }
-      },
-    };
+    return new UserAgentBagEntries(this._nodes);
   }
 
   size() {
@@ -56,6 +47,10 @@ class UserAgentBag {
         }
       })
       .join(" ");
+  }
+
+  [Symbol.iterator]() {
+    return this.entries()[Symbol.iterator]();
   }
 }
 
@@ -135,4 +130,18 @@ function isValidEntry(value) {
   return (
     Boolean(value) && typeof value === "object" && "0" in value && "1" in value
   );
+}
+
+class UserAgentBagEntries {
+  constructor(nodes) {
+    this._nodes = nodes;
+  }
+
+  *[Symbol.iterator]() {
+    for (const node of this._nodes) {
+      if (node.type === "product") {
+        yield [node.product, node.version];
+      }
+    }
+  }
 }
