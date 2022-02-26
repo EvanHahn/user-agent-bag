@@ -27,6 +27,16 @@ test("parsing a string with products and comments", (t) => {
   t.deepEqual(bag.getAll("Garbage"), []);
   t.deepEqual(bag.getAll("foo"), []);
 
+  t.deepEqual(
+    [...bag.entries()],
+    [
+      ["Foo", "fooVersion"],
+      ["Bar", null],
+      ["Baz", "bazVersion"],
+      ["Bar", "secondBar"],
+    ]
+  );
+
   t.is(bag.size(), 4);
 
   t.is(

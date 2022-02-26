@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+### Changed
+
+- Improved TypeScript types
+
 ### Removed
 
 - Removed Flow support

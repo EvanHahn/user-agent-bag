@@ -29,14 +29,15 @@
   ],
   "types": "./index.d.ts",
   "scripts": {
-    "pretest": "npm run lint && npm run build && npm run transpile:typescript",
+    "pretest": "npm run build && npm run lint",
     "build": "pegjs --output parser.js parser.pegjs",
     "lint": "npm run lint:eslint && npm run lint:prettier",
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "format": "prettier --write .",
-    "test": "ava",
-    "transpile:typescript": "tsc --strict --target ES2015 --module commonjs --allowSyntheticDefaultImports test/UserAgentBag-typescript.test.ts"
+    "test": "npm run test:ava && npm run test:typescript",
+    "test:ava": "ava",
+    "test:typescript": "tsc --noEmit"
   },
   "devDependencies": {
     "ava": "^3.15.0",
