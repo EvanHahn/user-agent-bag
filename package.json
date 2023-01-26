@@ -40,10 +40,10 @@
     "test:typescript": "tsc --noEmit"
   },
   "devDependencies": {
-    "ava": "^4.0.1",
-    "eslint": "^8.10.0",
+    "ava": "^5.1.1",
+    "eslint": "^8.32.0",
     "pegjs": "^0.10.0",
-    "prettier": "^2.5.1",
-    "typescript": "^4.5.5"
+    "prettier": "^2.8.3",
+    "typescript": "^4.9.4"
   }
 }
