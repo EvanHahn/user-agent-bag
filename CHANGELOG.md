@@ -1,5 +1,11 @@
 # Changelog
 
+## Unreleased
+
+### Removed
+
+- **Breaking:** Dropped support for old Node versions. Node v18+ is required
+
 ## 0.3.0 - 2022-02-25
 
 ### Added
