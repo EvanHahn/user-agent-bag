@@ -29,7 +29,7 @@ class UserAgentBag {
   size() {
     return this._nodes.reduce(
       (total, node) => (node.type === "product" ? total + 1 : total),
-      0
+      0,
     );
   }
 
@@ -68,7 +68,7 @@ function parse(arg) {
     return parseIterable(arg);
   } else {
     throw new TypeError(
-      "UserAgentBag must be constructed with a string or an iterable"
+      "UserAgentBag must be constructed with a string or an iterable",
     );
   }
 }

@@ -6,7 +6,7 @@ Parse User-Agents per [RFC7231](https://tools.ietf.org/html/rfc7231#section-5.5.
 const UserAgentBag = require("user-agent-bag");
 
 const firefoxBag = new UserAgentBag(
-  "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0"
+  "Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0",
 );
 firefoxBag.get("Mozilla");
 // => '5.0'
@@ -34,7 +34,7 @@ validBag.get("Foo");
 // => '1.2'
 
 const invalidStringBag = new UserAgentBag(
-  "Foo/1.2 IsInvalidBecauseVersionIsMissing/"
+  "Foo/1.2 IsInvalidBecauseVersionIsMissing/",
 );
 invalidStringBag.get("Foo");
 // => undefined

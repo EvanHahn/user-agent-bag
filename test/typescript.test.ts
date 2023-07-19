@@ -12,7 +12,7 @@ new UserAgentBag(
   new Set([
     ["key", "value"],
     ["key2", null],
-  ])
+  ]),
 );
 
 const bag = new UserAgentBag();

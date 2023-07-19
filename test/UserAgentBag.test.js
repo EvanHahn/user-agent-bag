@@ -3,7 +3,7 @@ const UserAgentBag = require("../UserAgentBag");
 
 test("parsing a string with products and comments", (t) => {
   const bag = new UserAgentBag(
-    "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar"
+    "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar",
   );
 
   t.assert(bag.has("Foo"));
@@ -34,7 +34,7 @@ test("parsing a string with products and comments", (t) => {
       ["Bar", null],
       ["Baz", "bazVersion"],
       ["Bar", "secondBar"],
-    ]
+    ],
   );
   t.deepEqual(
     [...bag],
@@ -43,14 +43,14 @@ test("parsing a string with products and comments", (t) => {
       ["Bar", null],
       ["Baz", "bazVersion"],
       ["Bar", "secondBar"],
-    ]
+    ],
   );
 
   t.is(bag.size(), 4);
 
   t.is(
     bag.toString(),
-    "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar"
+    "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar",
   );
 });
 
