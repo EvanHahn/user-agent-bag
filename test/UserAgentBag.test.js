@@ -76,6 +76,8 @@ test("returns an empty bag if the string is malformed", (t) => {
     "",
     "NoVersion/",
     "(starts with comment) Mozilla/5.0",
+    "Test/Invalid (comment",
+    "Test (invalid comment",
     " LeadingWhitespace/1",
     "Trailing/whitespace ",
     "Am(biguous)/1",
