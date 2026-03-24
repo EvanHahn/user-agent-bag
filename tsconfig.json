@@ -3,13 +3,13 @@
     "esModuleInterop": true,
     "lib": ["ES2015"],
     "module": "commonjs",
-    "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitReturns": true,
     "noUncheckedIndexedAccess": true,
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "strict": true,
-    "target": "es6"
+    "target": "es6",
+    "types": ["node"]
   }
 }
