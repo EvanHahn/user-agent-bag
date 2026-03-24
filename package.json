@@ -28,8 +28,8 @@
   "scripts": {
     "pretest": "npm run build && npm run lint",
     "build": "pegjs --output parser.js parser.pegjs",
-    "lint": "npm run lint:eslint && npm run lint:oxfmt",
-    "lint:eslint": "eslint .",
+    "lint": "npm run lint:oxlint && npm run lint:oxfmt",
+    "lint:oxlint": "oxlint",
     "lint:oxfmt": "oxfmt --check",
     "format": "oxfmt",
     "test": "npm run test:node && npm run test:typescript",
@@ -38,8 +38,8 @@
   },
   "devDependencies": {
     "@types/node": "^25.5.0",
-    "eslint": "^8.45.0",
     "oxfmt": "^0.42.0",
+    "oxlint": "^1.57.0",
     "pegjs": "^0.10.0",
     "typescript": "^5.9.3"
   },

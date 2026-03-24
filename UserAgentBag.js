@@ -75,9 +75,7 @@ function parseString(str) {
   if (str.length && str.length <= MAX_STRING_LENGTH) {
     try {
       nodes = parser.parse(str);
-    } catch (err) {
-      // Do nothing
-    }
+    } catch {}
   }
 
   for (const node of nodes) {
