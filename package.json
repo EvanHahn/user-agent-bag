@@ -35,12 +35,12 @@
     "lint:eslint": "eslint .",
     "lint:prettier": "prettier --check .",
     "format": "prettier --write .",
-    "test": "npm run test:ava && npm run test:typescript",
-    "test:ava": "ava",
+    "test": "npm run test:node && npm run test:typescript",
+    "test:node": "node --test",
     "test:typescript": "tsc --noEmit"
   },
   "devDependencies": {
-    "ava": "^6.4.1",
+    "@types/node": "^25.5.0",
     "eslint": "^8.45.0",
     "pegjs": "^0.10.0",
     "prettier": "^3.8.1",

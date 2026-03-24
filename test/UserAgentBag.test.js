@@ -1,33 +1,34 @@
-const test = require("ava");
+const assert = require("node:assert/strict");
+const test = require("node:test");
 const UserAgentBag = require("../UserAgentBag");
 
-test("parsing a string with products and comments", (t) => {
+test("parsing a string with products and comments", () => {
   const bag = new UserAgentBag(
     "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar",
   );
 
-  t.assert(bag.has("Foo"));
-  t.is(bag.get("Foo"), "fooVersion");
-  t.deepEqual(bag.getAll("Foo"), ["fooVersion"]);
+  assert(bag.has("Foo"));
+  assert.equal(bag.get("Foo"), "fooVersion");
+  assert.deepEqual(bag.getAll("Foo"), ["fooVersion"]);
 
-  t.assert(bag.has("Bar"));
-  t.is(bag.get("Bar"), null);
-  t.deepEqual(bag.getAll("Bar"), [null, "secondBar"]);
+  assert(bag.has("Bar"));
+  assert.equal(bag.get("Bar"), null);
+  assert.deepEqual(bag.getAll("Bar"), [null, "secondBar"]);
 
-  t.assert(bag.has("Baz"));
-  t.is(bag.get("Baz"), "bazVersion");
-  t.deepEqual(bag.getAll("Baz"), ["bazVersion"]);
+  assert(bag.has("Baz"));
+  assert.equal(bag.get("Baz"), "bazVersion");
+  assert.deepEqual(bag.getAll("Baz"), ["bazVersion"]);
 
-  t.assert(!bag.has("Garbage"));
-  t.assert(!bag.has("foo"));
-  t.assert(!bag.has(""));
+  assert(!bag.has("Garbage"));
+  assert(!bag.has("foo"));
+  assert(!bag.has(""));
 
-  t.is(bag.get("Garbage"), undefined);
-  t.is(bag.get("foo"), undefined);
-  t.deepEqual(bag.getAll("Garbage"), []);
-  t.deepEqual(bag.getAll("foo"), []);
+  assert.equal(bag.get("Garbage"), undefined);
+  assert.equal(bag.get("foo"), undefined);
+  assert.deepEqual(bag.getAll("Garbage"), []);
+  assert.deepEqual(bag.getAll("foo"), []);
 
-  t.deepEqual(
+  assert.deepEqual(
     [...bag.entries()],
     [
       ["Foo", "fooVersion"],
@@ -36,7 +37,7 @@ test("parsing a string with products and comments", (t) => {
       ["Bar", "secondBar"],
     ],
   );
-  t.deepEqual(
+  assert.deepEqual(
     [...bag],
     [
       ["Foo", "fooVersion"],
@@ -46,15 +47,15 @@ test("parsing a string with products and comments", (t) => {
     ],
   );
 
-  t.is(bag.size(), 4);
+  assert.equal(bag.size(), 4);
 
-  t.is(
+  assert.equal(
     bag.toString(),
     "Foo/fooVersion (comment (nested)!) Bar Baz/bazVersion (comment2) Bar/secondBar",
   );
 });
 
-test("can convert entries to a bag", (t) => {
+test("can convert entries to a bag", () => {
   const entries = [
     ["Foo", "bar"],
     ["Baz", null],
@@ -63,15 +64,15 @@ test("can convert entries to a bag", (t) => {
 
   const bag = new UserAgentBag(entries);
 
-  t.deepEqual(bag.getAll("Foo"), ["bar", "two"]);
-  t.deepEqual(bag.getAll("Baz"), [null]);
+  assert.deepEqual(bag.getAll("Foo"), ["bar", "two"]);
+  assert.deepEqual(bag.getAll("Baz"), [null]);
 
-  t.is(bag.size(), 3);
+  assert.equal(bag.size(), 3);
 
-  t.is(bag.toString(), "Foo/bar Baz Foo/two");
+  assert.equal(bag.toString(), "Foo/bar Baz Foo/two");
 });
 
-test("returns an empty bag if the string is malformed", (t) => {
+test("returns an empty bag if the string is malformed", () => {
   const testCases = [
     "",
     "NoVersion/",
@@ -88,25 +89,25 @@ test("returns an empty bag if the string is malformed", (t) => {
 
   for (const testCase of testCases) {
     const bag = new UserAgentBag(testCase);
-    t.deepEqual([...bag.entries()], []);
-    t.is(bag.size(), 0);
+    assert.deepEqual([...bag.entries()], []);
+    assert.equal(bag.size(), 0);
   }
 });
 
-test("returns an empty bag if null or undefined are passed", (t) => {
+test("returns an empty bag if null or undefined are passed", () => {
   const nullBag = new UserAgentBag(null);
-  t.deepEqual([...nullBag.entries()], []);
-  t.is(nullBag.size(), 0);
+  assert.deepEqual([...nullBag.entries()], []);
+  assert.equal(nullBag.size(), 0);
 
   const undefinedBag = new UserAgentBag(undefined);
-  t.deepEqual([...undefinedBag.entries()], []);
-  t.is(undefinedBag.size(), 0);
+  assert.deepEqual([...undefinedBag.entries()], []);
+  assert.equal(undefinedBag.size(), 0);
 });
 
-test("throws if bogus types are passed", (t) => {
+test("throws if bogus types are passed", () => {
   const testCases = [0, 123, true, false, { toString: () => "User/agent" }];
 
   for (const testCase of testCases) {
-    t.throws(() => new UserAgentBag(/*:: ( */ testCase /*:: : any) */));
+    assert.throws(() => new UserAgentBag(/*:: ( */ testCase /*:: : any) */));
   }
 });

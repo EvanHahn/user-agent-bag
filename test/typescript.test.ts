@@ -1,4 +1,4 @@
-import UserAgentBag = require("..");
+const UserAgentBag = require("..");
 
 new UserAgentBag();
 new UserAgentBag(null);
