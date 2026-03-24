@@ -4,7 +4,7 @@
 
 ### Removed
 
-- **Breaking:** Dropped support for old Node versions. Node v18+ is required
+- **Breaking:** Dropped support for old Node versions. Node v22+ is required
 
 ## 0.3.0 - 2022-02-25
 
