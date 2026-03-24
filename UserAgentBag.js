@@ -27,10 +27,7 @@ class UserAgentBag {
   }
 
   size() {
-    return this._nodes.reduce(
-      (total, node) => (node.type === "product" ? total + 1 : total),
-      0,
-    );
+    return this._nodes.reduce((total, node) => (node.type === "product" ? total + 1 : total), 0);
   }
 
   toString() {
@@ -67,9 +64,7 @@ function parse(arg) {
   } else if (arg && arg[Symbol.iterator]) {
     return parseIterable(arg);
   } else {
-    throw new TypeError(
-      "UserAgentBag must be constructed with a string or an iterable",
-    );
+    throw new TypeError("UserAgentBag must be constructed with a string or an iterable");
   }
 }
 
@@ -127,9 +122,7 @@ function parseIterable(iterable) {
 }
 
 function isValidEntry(value) {
-  return (
-    Boolean(value) && typeof value === "object" && "0" in value && "1" in value
-  );
+  return Boolean(value) && typeof value === "object" && "0" in value && "1" in value;
 }
 
 class UserAgentBagEntries {

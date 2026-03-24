@@ -1,24 +1,20 @@
 {
   "name": "user-agent-bag",
-  "description": "RFC-respecting User-Agent serialization and deserialization",
   "version": "0.3.0",
-  "license": "MIT",
+  "description": "RFC-respecting User-Agent serialization and deserialization",
+  "keywords": [
+    "rfc7231",
+    "user-agent",
+    "useragent"
+  ],
   "homepage": "https://github.com/EvanHahn/user-agent-bag",
   "bugs": "https://github.com/EvanHahn/user-agent-bag/issues",
-  "engines": {
-    "node": ">=22.0.0"
-  },
+  "license": "MIT",
   "author": "Evan Hahn <me@evanhahn.com> (https://evanhahn.com)",
-  "keywords": [
-    "useragent",
-    "user-agent",
-    "rfc7231"
-  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/EvanHahn/user-agent-bag.git"
   },
-  "main": "./UserAgentBag.js",
   "files": [
     "README.md",
     "LICENSE.txt",
@@ -27,14 +23,15 @@
     "parser.js",
     "UserAgentBag.js"
   ],
+  "main": "./UserAgentBag.js",
   "types": "./index.d.ts",
   "scripts": {
     "pretest": "npm run build && npm run lint",
     "build": "pegjs --output parser.js parser.pegjs",
-    "lint": "npm run lint:eslint && npm run lint:prettier",
+    "lint": "npm run lint:eslint && npm run lint:oxfmt",
     "lint:eslint": "eslint .",
-    "lint:prettier": "prettier --check .",
-    "format": "prettier --write .",
+    "lint:oxfmt": "oxfmt --check",
+    "format": "oxfmt",
     "test": "npm run test:node && npm run test:typescript",
     "test:node": "node --test",
     "test:typescript": "tsc --noEmit"
@@ -42,8 +39,11 @@
   "devDependencies": {
     "@types/node": "^25.5.0",
     "eslint": "^8.45.0",
+    "oxfmt": "^0.42.0",
     "pegjs": "^0.10.0",
-    "prettier": "^3.8.1",
     "typescript": "^5.9.3"
+  },
+  "engines": {
+    "node": ">=22.0.0"
   }
 }

@@ -33,9 +33,7 @@ const validBag = new UserAgentBag("Foo/1.2");
 validBag.get("Foo");
 // => '1.2'
 
-const invalidStringBag = new UserAgentBag(
-  "Foo/1.2 IsInvalidBecauseVersionIsMissing/",
-);
+const invalidStringBag = new UserAgentBag("Foo/1.2 IsInvalidBecauseVersionIsMissing/");
 invalidStringBag.get("Foo");
 // => undefined
 ```
