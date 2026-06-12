@@ -37,11 +37,11 @@
     "test:typescript": "tsc --noEmit"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
-    "oxfmt": "^0.42.0",
-    "oxlint": "^1.57.0",
+    "@types/node": "^25.9.3",
+    "oxfmt": "^0.54.0",
+    "oxlint": "^1.69.0",
     "pegjs": "^0.10.0",
-    "typescript": "^6.0.2"
+    "typescript": "^6.0.3"
   },
   "engines": {
     "node": ">=22.0.0"
