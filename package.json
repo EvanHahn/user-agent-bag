@@ -7,13 +7,13 @@
     "user-agent",
     "useragent"
   ],
-  "homepage": "https://github.com/EvanHahn/user-agent-bag",
-  "bugs": "https://github.com/EvanHahn/user-agent-bag/issues",
+  "homepage": "https://codeberg.org/EvanHahn/user-agent-bag",
+  "bugs": "https://codeberg.org/EvanHahn/user-agent-bag/issues",
   "license": "MIT",
   "author": "Evan Hahn <me@evanhahn.com> (https://evanhahn.com)",
   "repository": {
     "type": "git",
-    "url": "git://github.com/EvanHahn/user-agent-bag.git"
+    "url": "https://codeberg.org/EvanHahn/user-agent-bag.git"
   },
   "files": [
     "README.md",
